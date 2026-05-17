@@ -1,0 +1,6 @@
+{
+  "name": "VRAI PATRIOTE",
+  "description": "Portail d'information national professionnel proposant actualités, politique, économie, sport et vidéos en temps réel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

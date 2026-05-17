@@ -1,0 +1,72 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "isAdmin": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "isAdmin"]
+    },
+    "Article": {
+      "title": "Article",
+      "description": "News article or video post",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "excerpt": { "type": "string" },
+        "category": { "type": "string", "enum": ["Actualités", "Politique", "Société", "Sécurité", "Économie", "Sport", "Vidéos"] },
+        "thumbnail": { "type": "string" },
+        "videoUrl": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "status": { "type": "string", "enum": ["draft", "published"] },
+        "publishedAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "likesCount": { "type": "integer" },
+        "commentsCount": { "type": "integer" },
+        "isBreaking": { "type": "boolean" },
+        "isPopular": { "type": "boolean" }
+      },
+      "required": ["title", "content", "category", "authorId", "status", "createdAt"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "Comment on an article",
+      "type": "object",
+      "properties": {
+        "articleId": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorPhoto": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "likesCount": { "type": "integer" },
+        "parentId": { "type": "string" }
+      },
+      "required": ["articleId", "authorId", "content", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/articles/{articleId}": {
+      "schema": "Article",
+      "description": "News articles"
+    },
+    "/articles/{articleId}/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Comments on articles"
+    }
+  }
+}
